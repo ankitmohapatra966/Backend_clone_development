@@ -1,6 +1,6 @@
 import { asyncHandler } from "../utils/asyncHandler.js"
 import {ApiError} from "../utils/ApiError.js"
-import { User } from "../../models/user.model.js"
+import { User } from "../models/user.model.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
@@ -156,7 +156,7 @@ const refreshAccessToken = asyncHandler(async(req,res)=>{
     const incomingRefreshToken = req.cookies.refreshToken || req.body.refreshToken
 
     if(!incomingRefreshToken){
-        throw new ApiError(401,"Inauthorized Request")
+        throw new ApiError(401,"Unauthorized Request")
     }
 try{
     const decodedToken= jwt.verify(
